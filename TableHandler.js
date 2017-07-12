@@ -90,7 +90,8 @@ var TableHandler={
             var totaldue=objT.text();
             var totalduenum=Number(totaldue.replace(/[^0-9\.]+/g,""));
             if(inputnum > totalduenum){
-                alert("bigger number");
+                //alert("bigger number");
+                PopupHandler.popup("Warning\nEnter Amount is more than owed\nRe-Enter !");
                 obj1.val(totaldue);
             }
             var sumnum=0;
@@ -104,7 +105,8 @@ var TableHandler={
             console.log("invalid input");
             var atext=objcurr.text();
             obj1.val(atext);
-            alert("Warning!\nInput format\ntwo decial format\n$xxx.xx");
+            //alert("Warning!\nInput format\ntwo decial format\n$xxx.xx");
+            PopupHandler.popup("Warning!\nInput format\ntwo decial format\n$xxx.xx");
         }
     }
 }
