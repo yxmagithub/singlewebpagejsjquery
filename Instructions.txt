@@ -1,0 +1,37 @@
+
+
+The description field is an <input type="text"> field. This field should not allow any numeric characters (0-9) to be entered. (JavaScript keyup, keydown, or change event)
+
+The "Lock Accounts & Amounts" button is an <input> field of type button or submit, or a HTML5 <button> element. When the user hovers the mouse over it the font color should change to red, bold font-weight, and italic. The cursor should also be shown as "pointer". When this button is pressed the user should be given a pop-up message stating the total that they are paying. The total amount is the sum of the Lock Amount field values for the individual accounts. (CSS hover pseudo-class)
+
+
+The "Lock Amounts are based on:" field is a <select> drop-down. There should be two displayed options:
+
+    "Current Year Amount Due"
+    "Total Due for All Years"
+
+When the drop-down value is changed a user prompt should display a warning to the user, the prompt should allow the user to accept the change or to cancel the change (OK or Cancel). (JavaScript onchange event)
+
+If the user selects "OK" the values in the "Lock Amount" field should be updated to the selected amount due. i.e. If the choice is "Current Year Amount Due" the value shown in the "Current Year Amount Due" column should be shown. Total due should change the values to the amount in the Total Due column.
+
+If the user selects "Cancel" the value in the Lock Amount field should remain unchanged and the value shown in the "Lock Amounts are based on:" field drop-down should reflect the prior chosen value.
+
+
+The "Lock Amount" field is an <input> field of type text. The user should be able to enter any amount from $0.00 to the amount shown in the "Total Due for All Years" column for that account. If the user enters an amount more than the total due amount a pop-up message should appear telling the user that entering an amount due more than what is owed is not allowed. The amount in the lock amount field should then be updated to the amount shown in the "Total Due for All Years" column. (JavaScript onchange event)
+
+Negative amounts should not be allowed. If the user clears the field the value should default to $0.00.
+
+Amount changes should be reflected in the total amount cell in the footer. 
+
+Amounts should be formatted to 2 decimal places. Commas and dollar sign formatting is optional.
+
+
+
+The following is a JavaScript variable initialized to the amount values shown on the page for each of the accounts. You may use this, the HTML values directly, or whatever you feel is best. Feel free to extend or change as you want.
+
+var accounts = [ { account: "A12345", current: 0, total: 1197.92 },
+                 { account: "B67890", current: 234.61, total: 234.61 },
+                 { account: "C00001", current: 501.22, total: 8486.75 }
+                ];
+
+
