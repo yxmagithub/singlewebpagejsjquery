@@ -1,27 +1,28 @@
 /**
- * Created by ultragateG460 on 7/11/2017.
+ * Created by ultragateG460
+ * Handle all the DropDown Item UI logic,
+ * Validate the input text as well
  */
 
 var DropDownHandler={
     xzItemValue:"Current",
     yqItemValue:"Total",
+    /*
+    *function: getSelectValue(evt)
+    * DropDown Item Onchange Eventhandler,
+    * */
     getSelectValue:function(evt){
         var conf = confirm("WARNING! You Change Lock Amount Type\nClick 'OK' or 'CANCEL'");
         var selectbox1 = document.getElementById("lockType");
         DropDownHandler.xzItemValue = selectbox1.options[selectbox1.selectedIndex].value;
         if(!conf){
             console.log('cancel');
-            if(DropDownHandler.xzItemValue==="Current")
-                DropDownHandler.yqItemValue="Total";
-            else if(DropDownHandler.xzItemValue==="Total")
-                DropDownHandler.yqItemValue="Current";
-            $("#lockType").val(DropDownHandler.yqItemValue)
             var amoutDue = document.getElementById("lockAmountTotal");
-            if (DropDownHandler.yqItemValue === "Current") {
-                amoutDue.textContent = document.getElementById("currentDue").textContent;
+            if (selectbox1.selectedIndex === 0){
+                selectbox1.selectedIndex = 1;
             }
-            else if (DropDownHandler.yqItemValue === "Total") {
-                amoutDue.textContent = document.getElementById("totalDue").textContent;
+            else { //===1
+                selectbox1.selectedIndex = 0;
             }
             if(evt.preventDefault) evt.preventDefault();//cancel the event
             return 1;
