@@ -18,6 +18,9 @@
         PopupHandler.popup("You have owe\n"+taxOwe);
     });
 
+    $("#lockType").bind("change",DropDownHandler.getSelectValue);
+    $("#lockType").bind("focus",DropDownHandler.getFocus);
+
     $('#A12345').bind("change", TableHandler.changeeventhandler);
 /*    $('#A12345').bind("keydown", TableHandler.keydownhandler);
     $('#A12345').bind("keyup", TableHandler.keyuphandler);*/

@@ -81,7 +81,7 @@ var TableHandler={
         if(key === "") {
             obj1.val("$0.00");
             console.log("clear input");
-            return;
+            return 2;
         }
         retV=TableHandler.validatedollarfmt(evt);
         if(retV===true) {
@@ -100,6 +100,7 @@ var TableHandler={
             sumnum+=Number(($("#C00001").val()).replace(/[^0-9\.]+/g,""));
             sumnum=parseFloat(Math.round(sumnum * 100) / 100).toFixed(2);
             $("#lockAmountTotal").text("\$"+sumnum);
+            return 1;
         }
         else {
             console.log("invalid input");
@@ -107,6 +108,10 @@ var TableHandler={
             obj1.val(atext);
             //alert("Warning!\nInput format\ntwo decial format\n$xxx.xx");
             PopupHandler.popup("Warning!\nInput format\ntwo decial format\n$xxx.xx");
+            return -1;
         }
+    },
+    unittest:function (arg) {
+        var retV=TableHandler.changeeventhandler(evt);
     }
 }

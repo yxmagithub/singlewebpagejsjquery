@@ -3,20 +3,41 @@
  */
 
 var DropDownHandler={
-    currentItemValue:"",
-    getSelectValue:function(){
+    xzItemValue:"Current",
+    yqItemValue:"Total",
+    getSelectValue:function(evt){
         var conf = confirm("WARNING! You Change Lock Amount Type\nClick 'OK' or 'CANCEL'");
+        var selectbox1 = document.getElementById("lockType");
+        DropDownHandler.xzItemValue = selectbox1.options[selectbox1.selectedIndex].value;
         if(!conf){
             console.log('cancel');
-            return;
+            if(DropDownHandler.xzItemValue==="Current")
+                DropDownHandler.yqItemValue="Total";
+            else if(DropDownHandler.xzItemValue==="Total")
+                DropDownHandler.yqItemValue="Current";
+            $("#lockType").val(DropDownHandler.yqItemValue)
+            var amoutDue = document.getElementById("lockAmountTotal");
+            if (DropDownHandler.yqItemValue === "Current") {
+                amoutDue.textContent = document.getElementById("currentDue").textContent;
+            }
+            else if (DropDownHandler.yqItemValue === "Total") {
+                amoutDue.textContent = document.getElementById("totalDue").textContent;
+            }
+            if(evt.preventDefault) evt.preventDefault();//cancel the event
+            return 1;
+        }else {
+            var amoutDue = document.getElementById("lockAmountTotal");
+            if (DropDownHandler.xzItemValue === "Current") {
+                amoutDue.textContent = document.getElementById("currentDue").textContent;
+            }
+            else if (DropDownHandler.xzItemValue === "Total") {
+                amoutDue.textContent = document.getElementById("totalDue").textContent;
+            }
+            return 0;
         }
-        var selectbox1 = document.getElementById("lockType");
-        DropDownHandler.currentItemValue = selectbox1.options[selectbox1.selectedIndex].value;
-        console.log("onchange evt fire");
-        var amoutDue = document.getElementById("lockAmountTotal");
-        if(DropDownHandler.currentItemValue === "Current"){
-            amoutDue.textContent = document.getElementById("currentDue").textContent;}
-        else if(DropDownHandler.currentItemValue === "Total"){
-            amoutDue.textContent = document.getElementById("totalDue").textContent;}
+    },
+    //unit test
+    unittest:function(arg){
+        var retV = DropDownHandler.getSelectValue(evt);
     }
 }

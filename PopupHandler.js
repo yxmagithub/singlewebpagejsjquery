@@ -21,6 +21,10 @@ var PopupHandler={
 
             // display the message
             $('#dialog-message').html(message);
-    }
+    },
+            //unit test
+            unittest:function(msg){
+                PopupHandler.popup(msg);
+            }
 
 }

@@ -30,12 +30,15 @@ var InputHandler ={
         var retV=true;
         retV=InputHandler.isvalidnumkeycode(evt);
 
-        if(retV===true)
+        if(retV===true) {
             console.log("Not Number 0-9");
+            return 0;
+        }
         else {
             console.log("it is Number 0-9");
             InputHandler.validationkeystrok = false;
             if(evt.preventDefault) evt.preventDefault();//cancel the event
+            return -1;
         }
     },
     isvalidnumkeycode:function(evt){
@@ -47,5 +50,9 @@ var InputHandler ={
         }
         else
             return false;//invalid input due to 0-9
+    },
+
+    unittest:function (arg) {
+        var retV=InputHandler.keyonchanghandler(evt);
     }
 }
