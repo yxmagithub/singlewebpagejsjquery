@@ -15,3 +15,5 @@ This project is for demo purpose, it use the valina Javascript, and jquery to co
 
 4. add the unit test function for each control object
 
+5. add the security feature to prevent the clickjacking
+
