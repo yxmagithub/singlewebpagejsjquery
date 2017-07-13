@@ -12,3 +12,6 @@ This project is for demo purpose, it use the valina Javascript, and jquery to co
 2. separate all the component, let all the handler file to process all the control logic for UI, it includes Tablehandler, DropDownHandler, inputhadler, popuphandler
 
 3. use a custmizered popup dialog
+
+4. add the unit test function for each control object
+
