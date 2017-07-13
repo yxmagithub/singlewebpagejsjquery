@@ -58,6 +58,7 @@ var TableHandler={
     },
     changeeventhandler:function(evt){
         var retV=true;
+        var sumnum=0;
         var obj1,objcurr,objT;
         var id = $(this).attr('id');
         console.log(id+'\n');
@@ -81,6 +82,11 @@ var TableHandler={
         if(key === "") {
             obj1.val("$0.00");
             console.log("clear input");
+            sumnum+=Number(($("#A12345").val()).replace(/[^0-9\.]+/g,""));
+            sumnum+=Number(($("#B67890").val()).replace(/[^0-9\.]+/g,""));
+            sumnum+=Number(($("#C00001").val()).replace(/[^0-9\.]+/g,""));
+            sumnum=parseFloat(Math.round(sumnum * 100) / 100).toFixed(2);
+            $("#lockAmountTotal").text("\$"+sumnum);
             return 2;
         }
         retV=TableHandler.validatedollarfmt(evt);
@@ -94,7 +100,6 @@ var TableHandler={
                 PopupHandler.popup("Warning\nEnter Amount is more than owed\nRe-Enter !");
                 obj1.val(totaldue);
             }
-            var sumnum=0;
             sumnum+=Number(($("#A12345").val()).replace(/[^0-9\.]+/g,""));
             sumnum+=Number(($("#B67890").val()).replace(/[^0-9\.]+/g,""));
             sumnum+=Number(($("#C00001").val()).replace(/[^0-9\.]+/g,""));
