@@ -30,7 +30,8 @@ var TableHandler={
                 alert("wrong input type of key");
                 return -2;
             }
-            var regex = /^\$?[0-9]+(\.[0-9][0-9])?$/;
+            //var regex = /^\$?[0-9]+(\.[0-9][0-9])?$/;
+            var regex = /^\$?[0-9]+((\.[0-9][0-9])?|(\.[0-9])?)$/;
             if( regex.test(key) ) {
                 return 1;//right format
             }
@@ -125,11 +126,13 @@ var TableHandler={
             if(retV===1) {
                 console.log("valid input");
                 var inputnum=Number( key.replace(/[^0-9\.]+/g,""));
+                //inputnum.toFixed(2);
+                obj1.val("$"+inputnum.toFixed(2));
                 var totaldue=objT.text();
                 var totalduenum=Number(totaldue.replace(/[^0-9\.]+/g,""));
                 if(inputnum > totalduenum){
                     //alert("bigger number");
-                    PopupHandler.popup("Warning\nEnter Amount is more than owed\nRe-Enter !");
+                    PopupHandler.popup("Warning!\nEnter Amount is more than owed !");
                     obj1.val(totaldue);
                 }
                 retCode= 1;
@@ -144,7 +147,7 @@ var TableHandler={
             }
             else
             {
-                PopupHandler.popup("Error! application error");
+                PopupHandler.popup("Error! Application error");
                 retCode=-2;
             }
             sumnum=TableHandler.getlockAmountTotalSum();

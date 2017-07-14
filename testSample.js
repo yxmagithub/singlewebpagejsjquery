@@ -9,7 +9,7 @@
 
     input.addEventListener("keydown", InputHandler.keydownhandler);
     input.addEventListener("keyup", InputHandler.keyuphandler);
-    input.addEventListener("keypress",InputHandler.keyonchanghandler);
+    input.addEventListener("change",InputHandler.keyonchanghandler);
 
     var button = document.getElementById("lockPayment");
     button.addEventListener("click", function () {
