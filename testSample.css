@@ -1,5 +1,5 @@
 .description button:hover{
-    font-weight:bold; text-decoration:underline;color:red;font-style:italic;
+    font-weight:bold; text-decoration:underline;color:red;font-style:italic;cursor: pointer;
 }
 
 /*
