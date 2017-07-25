@@ -12,7 +12,7 @@ var DropDownHandler={
     * DropDown Item Onchange Eventhandler,
     * */
     getSelectValue:function(evt){
-        var conf = confirm("WARNING! You Change Lock Amount Type\nClick 'OK' or 'CANCEL'");
+        var conf = confirm(GlobalizationHandler.getString("ConfirmChangeLockType"));
         var selectbox1 = document.getElementById("lockType");
         DropDownHandler.xzItemValue = selectbox1.options[selectbox1.selectedIndex].value;
         if(!conf){

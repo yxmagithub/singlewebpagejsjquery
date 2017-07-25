@@ -1,0 +1,8 @@
+{
+    "English":
+    [
+        {"id":"BiggerNumber","text":"Warning!\nEnter Amount is more than owed"},
+        {"id":"OnlyTwoDecimal","text":"Warning!\nInput format\ntwo decial format\n$xxx.xx"},
+        {"id":"ConfirmChangeLockType","text":"WARNING! You Change Lock Amount Type\nClick 'OK' or 'CANCEL'"}
+    ]
+}

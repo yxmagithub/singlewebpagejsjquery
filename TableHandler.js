@@ -2,13 +2,13 @@
  * Created by ultragateG460
  */
 
-var TableHandler={
-        tableattr:true,
+var TableHandler = Object.create(InputValidator);
+
     /*
      *function: validatedollarkeystroke(evt)
      * validate the each key stroke,
      * */
-        validatedollarkeystroke:function(evt){
+        TableHandler.validatedollarkeystroke=function(evt){
             var key=evt.keyCode;
             key = String.fromCharCode( key );
             var regex = /\$|[0-9]|\./;
@@ -18,76 +18,56 @@ var TableHandler={
             }
             else
                 return false;
-        },
+        };
     /*
      *function: validatedollarfmt(evt,key)
      * validate the dollar fmt,
      * key is the input string to be validated
      * */
-        validatedollarfmt:function(evt, key){
+        TableHandler.validatedollarfmt=function(evt, key){
             if(typeof key !== "string")
             {
                 alert("wrong input type of key");
                 return -2;
             }
             //var regex = /^\$?[0-9]+(\.[0-9][0-9])?$/;
-            var regex = /^\$?[0-9]+((\.[0-9][0-9])?|(\.[0-9])?)$/;
+            var regex = /^\$?[0-9]+((\.[0-9][0-9])|)$/;
             if( regex.test(key) ) {
                 return 1;//right format
             }
             else
                 return -1;
-        },
+        };
     /*
      *function: keyuphandler(evt)
      * keyup event handler,
      * */
-        keyuphandler:function (evt) {
-            var retV=true;
-            retV=TableHandler.validatedollarkeystroke(evt);
-            if(retV===true)
-                console.log("valid input");
-            else {
-                console.log("invalid input");
-                if(evt.preventDefault) evt.preventDefault();//cancel the event
-            }
-        },
+        TableHandler.keyuphandler=function (evt) {
+            InputValidator.validatekeystroke = TableHandler.validatedollarkeystroke(evt);
+            TableHandler.keyvalidprocessor(evt);
+        };
     /*
      *function: keydownhandler(evt)
      * keydown event handler,
      * */
-        keydownhandler:function (evt) {
-            var retV=true;
-            retV=TableHandler.validatedollarkeystroke(evt);
-            if(retV===true)
-                console.log("valid input");
-            else {
-                console.log("invalid input");
-                if(evt.preventDefault) evt.preventDefault();//cancel the event
-            }
-        },
+        TableHandler.keydownhandler = function (evt) {
+            InputValidator.validatekeystroke = TableHandler.validatedollarkeystroke(evt);
+            TableHandler.keyvalidprocessor(evt);
+        };
     /*
      *function: keyonhandler(evt)
      * keypress event handler,
      * */
-        keyonchanghandler:function (evt) {
-            var retV=true;
-            retV=TableHandler.validatedollarkeystroke(evt);
-
-            if(retV===true)
-                console.log("valid input");
-            else {
-                console.log("invalid input");
-                if(evt.preventDefault) evt.preventDefault();//cancel the event
-            }
-
-        },
+        TableHandler.keyonchanghandler = function (evt) {
+            InputValidator.validatekeystroke = TableHandler.validatedollarkeystroke(evt);
+            TableHandler.keyvalidprocessor(evt);
+        };
     /*
      *function: changeeventhandler(evt)
      * Table Item Onchange Eventhandler,
      * process all the Table Item UI logic
      * */
-        changeeventhandler:function(evt){
+        TableHandler.changeeventhandler = function(evt){
             var retV=0;
             var retCode=0;
             var sumnum=0;
@@ -132,7 +112,7 @@ var TableHandler={
                 var totalduenum=Number(totaldue.replace(/[^0-9\.]+/g,""));
                 if(inputnum > totalduenum){
                     //alert("bigger number");
-                    PopupHandler.popup("Warning!\nEnter Amount is more than owed !");
+                    PopupHandler.popup(GlobalizationHandler.getString("BiggerNumber"));
                     obj1.val(totaldue);
                 }
                 retCode= 1;
@@ -142,7 +122,8 @@ var TableHandler={
                 var atext=objcurr.text();
                 obj1.val(atext);
                 //alert("Warning!\nInput format\ntwo decial format\n$xxx.xx");
-                PopupHandler.popup("Warning!\nInput format\ntwo decial format\n$xxx.xx");
+                //PopupHandler.popup("Warning!\nInput format\ntwo decial format\n$xxx.xx");
+                PopupHandler.popup(GlobalizationHandler.getString("OnlyTwoDecimal"));
                 retCode = -1;
             }
             else
@@ -153,18 +134,17 @@ var TableHandler={
             sumnum=TableHandler.getlockAmountTotalSum();
             $("#lockAmountTotal").text("\$"+sumnum);
             return retCode;
-        },
-        getlockAmountTotalSum:function () {
+        };
+        TableHandler.getlockAmountTotalSum = function () {
             var sumnum1=0;
             sumnum1+=Number(($("#A12345").val()).replace(/[^0-9\.]+/g,""));
             sumnum1+=Number(($("#B67890").val()).replace(/[^0-9\.]+/g,""));
             sumnum1+=Number(($("#C00001").val()).replace(/[^0-9\.]+/g,""));
             sumnum1=parseFloat(Math.round(sumnum1 * 100) / 100).toFixed(2);
             return sumnum1;
-        },
+        };
 
         //unit test stub function
-        unittest:function (arg) {
+        TableHandler.unittest = function (arg) {
             var retV=TableHandler.changeeventhandler(evt);
-        }
-    }
+        };
