@@ -17,3 +17,10 @@ This project is for demo purpose, it use the valina Javascript, and jquery to co
 
 5. add the security feature to prevent the clickjacking
 
+6. abstract a InputValidator Object as base Object, it generalize the logic for validation, if validatekeystroke is false, then preventDefault event, no input allowed.
+
+7. All the input child Object are inherited from InputValidator Object by using the Object.Create(InputValidator).
+
+8. introduce the GlobalizationHandler.js, it initialized all the dictionary entry into Globalization.englishString[], it is mapping between entryid and entrytext
+
+9. All the display text are represented by english StringId
